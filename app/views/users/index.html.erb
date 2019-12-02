@@ -1,0 +1,21 @@
+<h1 class="text-center mt-3">Members</h1>
+
+<div class="row mt-4">
+    <% @users.each do |user| %>
+        <div class="col-6">
+            <div class="media mb-3">
+                <%= gravatar_for(user) %>
+                <div class="media-body">
+                    <h5 class="pl-2 font-weight-bold"><%= link_to user.name, user %> </h5>
+                </div>
+                <% if current_user.admin? %>
+                    <%= link_to "Delete",user_path(user), method: :delete, class: "btn btn-outline-danger btn-sm", data: { confirm: "Are you sure?"} %>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+</div>
+
+<div class="paginate text-center mt-4">
+    <%= will_paginate %>
+</div>
